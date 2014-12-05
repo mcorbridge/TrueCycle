@@ -1,5 +1,7 @@
 package com.mcorbridge.truecycle.data.men;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 
 /**
@@ -17,7 +19,7 @@ public class ProWattData {
     public ArrayList<Double> fiveMinMaxRange = new ArrayList<Double>(8);
     public ArrayList<Double> ftMaxRange = new ArrayList<Double>(8);
 
-    ProWattData(){
+    public void ProWattData(){
 
     }
 
@@ -25,11 +27,19 @@ public class ProWattData {
         this.cyclistWeightKg = cyclistWeightKg;
     }
 
-    public void getWattData(){
-        getFiveSecMaxRange(cyclistWeightKg);
-        getOneMinMaxRange(cyclistWeightKg);
-        getFiveMinMaxRange(cyclistWeightKg);
-        getFtMaxRange(cyclistWeightKg);
+    public ArrayList<ArrayList> getWattData(){
+        ArrayList<Double> n = getFiveSecMaxRange(cyclistWeightKg);
+        ArrayList<Double> m = getOneMinMaxRange(cyclistWeightKg);
+        ArrayList<Double> p = getFiveMinMaxRange(cyclistWeightKg);
+        ArrayList<Double> q = getFtMaxRange(cyclistWeightKg);
+
+        ArrayList<ArrayList> a = new ArrayList<ArrayList>(4);
+        a.add(n);
+        a.add(m);
+        a.add(p);
+        a.add(q);
+
+        return a;
     }
 
     public Double convertPoundToKilo(Double pounds){
