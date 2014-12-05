@@ -8,6 +8,9 @@ import android.view.MenuItem;
 
 import com.mcorbridge.truecycle.data.men.ProWattData;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+
 
 public class MainActivity extends Activity {
 
@@ -18,9 +21,21 @@ public class MainActivity extends Activity {
 
         ProWattData proWattData = new ProWattData();
         proWattData.setCyclistWeightKg(85.0);
-        String proData = proWattData.getWattData().toString();
+        ArrayList proData = proWattData.getWattData();
 
-        Log.d("****************************************", proData);
+        ArrayList<String> wattCategories = new ArrayList<String>(4);
+        wattCategories.add(0, "5 second max range");
+        wattCategories.add(1, "1 minute max range");
+        wattCategories.add(2, "5 minute max range");
+        wattCategories.add(3, "functional threshold range");
+
+        for (int i = 0; i < proData.size(); i++) {
+            Log.d("-------------------- ", wattCategories.get(i) + " --------------------");
+            ArrayList wattRange = (ArrayList) proData.get(i);
+            for (int n = 0; n < wattRange.size(); n++) {
+                Log.d("", wattRange.get(n).toString());
+            }
+        }
     }
 
 
