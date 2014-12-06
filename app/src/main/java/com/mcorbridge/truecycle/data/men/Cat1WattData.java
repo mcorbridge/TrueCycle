@@ -22,65 +22,77 @@ public class Cat1WattData {
         this.cyclistWeightKg = cyclistWeightKg;
     }
 
-    public void getWattData(){
-        getFiveSecMaxRange(cyclistWeightKg);
-        getOneMinMaxRange(cyclistWeightKg);
-        getFiveMinMaxRange(cyclistWeightKg);
-        getFtMaxRange(cyclistWeightKg);
+    public ArrayList<ArrayList> getWattData(){
+        ArrayList<Double> n = getFiveSecMaxRange(cyclistWeightKg);
+        ArrayList<Double> m = getOneMinMaxRange(cyclistWeightKg);
+        ArrayList<Double> p = getFiveMinMaxRange(cyclistWeightKg);
+        ArrayList<Double> q = getFtMaxRange(cyclistWeightKg);
+
+        ArrayList<ArrayList> a = new ArrayList<ArrayList>(4);
+        a.add(n);
+        a.add(m);
+        a.add(p);
+        a.add(q);
+
+        return a;
     }
 
     public Double convertPoundToKilo(Double pounds){
         return pounds * 0.453592;
     }
 
+    /* 20.78	20.51	20.23	19.96	19.69	19.42	19.15	18.87 */
     public ArrayList<Double> getFiveSecMaxRange(Double cyclistWeightKg){
-        fiveSecMaxRange.add(0,24.04*cyclistWeightKg);
-        fiveSecMaxRange.add(1,23.77*cyclistWeightKg);
-        fiveSecMaxRange.add(2,23.50*cyclistWeightKg);
-        fiveSecMaxRange.add(3,23.22*cyclistWeightKg);
-        fiveSecMaxRange.add(4,22.95*cyclistWeightKg);
-        fiveSecMaxRange.add(5,22.68*cyclistWeightKg);
-        fiveSecMaxRange.add(6,22.41*cyclistWeightKg);
-        fiveSecMaxRange.add(7,22.14*cyclistWeightKg);
+        fiveSecMaxRange.add(0,20.78*cyclistWeightKg);
+        fiveSecMaxRange.add(1,20.51*cyclistWeightKg);
+        fiveSecMaxRange.add(2,20.23*cyclistWeightKg);
+        fiveSecMaxRange.add(3,19.96*cyclistWeightKg);
+        fiveSecMaxRange.add(4,19.69*cyclistWeightKg);
+        fiveSecMaxRange.add(5,19.42*cyclistWeightKg);
+        fiveSecMaxRange.add(6,19.15*cyclistWeightKg);
+        fiveSecMaxRange.add(7,18.87*cyclistWeightKg);
 
         return fiveSecMaxRange;
     }
 
+    /* 10.12	10.01	9.89	9.78	9.66	9.55	9.43	9.32 */
     public ArrayList<Double> getOneMinMaxRange(Double cyclistWeightKg){
-        oneMinMaxRange.add(0,11.50*cyclistWeightKg);
-        oneMinMaxRange.add(1,11.39*cyclistWeightKg);
-        oneMinMaxRange.add(2,11.27*cyclistWeightKg);
-        oneMinMaxRange.add(3,11.16*cyclistWeightKg);
-        oneMinMaxRange.add(4,11.04*cyclistWeightKg);
-        oneMinMaxRange.add(5,10.93*cyclistWeightKg);
-        oneMinMaxRange.add(6,10.81*cyclistWeightKg);
-        oneMinMaxRange.add(7,10.70*cyclistWeightKg);
+        oneMinMaxRange.add(0,10.12*cyclistWeightKg);
+        oneMinMaxRange.add(1,10.01*cyclistWeightKg);
+        oneMinMaxRange.add(2,9.89*cyclistWeightKg);
+        oneMinMaxRange.add(3,9.78*cyclistWeightKg);
+        oneMinMaxRange.add(4,9.66*cyclistWeightKg);
+        oneMinMaxRange.add(5,9.55*cyclistWeightKg);
+        oneMinMaxRange.add(6,9.43*cyclistWeightKg);
+        oneMinMaxRange.add(7,9.32*cyclistWeightKg);
 
         return oneMinMaxRange;
     }
 
+    /* 6.36	6.26	6.15	6.05	5.95	5.84	5.74	5.64 */
     public ArrayList<Double> getFiveMinMaxRange(Double cyclistWeightKg){
-        fiveMinMaxRange.add(0,7.60*cyclistWeightKg);
-        fiveMinMaxRange.add(1,7.50*cyclistWeightKg);
-        fiveMinMaxRange.add(2,7.39*cyclistWeightKg);
-        fiveMinMaxRange.add(3,7.29*cyclistWeightKg);
-        fiveMinMaxRange.add(4,7.19*cyclistWeightKg);
-        fiveMinMaxRange.add(5,7.08*cyclistWeightKg);
-        fiveMinMaxRange.add(6,6.98*cyclistWeightKg);
-        fiveMinMaxRange.add(7,6.88*cyclistWeightKg);
+        fiveMinMaxRange.add(0,6.36*cyclistWeightKg);
+        fiveMinMaxRange.add(1,6.26*cyclistWeightKg);
+        fiveMinMaxRange.add(2,6.15*cyclistWeightKg);
+        fiveMinMaxRange.add(3,6.05*cyclistWeightKg);
+        fiveMinMaxRange.add(4,5.95*cyclistWeightKg);
+        fiveMinMaxRange.add(5,5.84*cyclistWeightKg);
+        fiveMinMaxRange.add(6,5.74*cyclistWeightKg);
+        fiveMinMaxRange.add(7,5.64*cyclistWeightKg);
 
         return fiveMinMaxRange;
     }
 
+    /* 5.33	5.24	5.15	5.07	4.98	4.89	4.8	4.71 */
     public ArrayList<Double> getFtMaxRange(Double cyclistWeightKg){
-        ftMaxRange.add(0,6.40*cyclistWeightKg);
-        ftMaxRange.add(1,6.31*cyclistWeightKg);
-        ftMaxRange.add(2,6.22*cyclistWeightKg);
-        ftMaxRange.add(3,6.13*cyclistWeightKg);
-        ftMaxRange.add(4,6.04*cyclistWeightKg);
-        ftMaxRange.add(5,5.96*cyclistWeightKg);
-        ftMaxRange.add(6,5.87*cyclistWeightKg);
-        ftMaxRange.add(7,5.78*cyclistWeightKg);
+        ftMaxRange.add(0,5.33*cyclistWeightKg);
+        ftMaxRange.add(1,5.24*cyclistWeightKg);
+        ftMaxRange.add(2,5.15*cyclistWeightKg);
+        ftMaxRange.add(3,5.07*cyclistWeightKg);
+        ftMaxRange.add(4,4.98*cyclistWeightKg);
+        ftMaxRange.add(5,4.89*cyclistWeightKg);
+        ftMaxRange.add(6,4.8*cyclistWeightKg);
+        ftMaxRange.add(7,4.71*cyclistWeightKg);
 
         return ftMaxRange;
     }

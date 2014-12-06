@@ -1,7 +1,5 @@
 package com.mcorbridge.truecycle.data.men;
 
-import android.util.Log;
-
 import java.util.ArrayList;
 
 /**
