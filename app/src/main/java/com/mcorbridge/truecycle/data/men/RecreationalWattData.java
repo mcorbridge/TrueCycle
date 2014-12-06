@@ -22,17 +22,26 @@ public class RecreationalWattData {
         this.cyclistWeightKg = cyclistWeightKg;
     }
 
-    public void getWattData(){
-        getFiveSecMaxRange(cyclistWeightKg);
-        getOneMinMaxRange(cyclistWeightKg);
-        getFiveMinMaxRange(cyclistWeightKg);
-        getFtMaxRange(cyclistWeightKg);
+    public ArrayList<ArrayList> getWattData(){
+        ArrayList<Double> n = getFiveSecMaxRange(cyclistWeightKg);
+        ArrayList<Double> m = getOneMinMaxRange(cyclistWeightKg);
+        ArrayList<Double> p = getFiveMinMaxRange(cyclistWeightKg);
+        ArrayList<Double> q = getFtMaxRange(cyclistWeightKg);
+
+        ArrayList<ArrayList> a = new ArrayList<ArrayList>(4);
+        a.add(n);
+        a.add(m);
+        a.add(p);
+        a.add(q);
+
+        return a;
     }
 
     public Double convertPoundToKilo(Double pounds){
         return pounds * 0.453592;
     }
 
+    /* 12.08	11.8	11.53	11.26	10.99	10.72	10.44	10.17 */
     public ArrayList<Double> getFiveSecMaxRange(Double cyclistWeightKg){
         fiveSecMaxRange.add(0,24.04*cyclistWeightKg);
         fiveSecMaxRange.add(1,23.77*cyclistWeightKg);
@@ -46,6 +55,7 @@ public class RecreationalWattData {
         return fiveSecMaxRange;
     }
 
+    /* 6.44	6.33	6.21	6.1	5.99	5.87	5.76	5.64 */
     public ArrayList<Double> getOneMinMaxRange(Double cyclistWeightKg){
         oneMinMaxRange.add(0,11.50*cyclistWeightKg);
         oneMinMaxRange.add(1,11.39*cyclistWeightKg);
@@ -59,6 +69,7 @@ public class RecreationalWattData {
         return oneMinMaxRange;
     }
 
+    /* 3.05	2.95	2.84	2.74	2.64	2.53	2.43	2.33 */
     public ArrayList<Double> getFiveMinMaxRange(Double cyclistWeightKg){
         fiveMinMaxRange.add(0,7.60*cyclistWeightKg);
         fiveMinMaxRange.add(1,7.50*cyclistWeightKg);
@@ -72,6 +83,7 @@ public class RecreationalWattData {
         return fiveMinMaxRange;
     }
 
+    /* 2.49	2.4	2.31	2.22	2.13	2.04	1.95	1.86 */
     public ArrayList<Double> getFtMaxRange(Double cyclistWeightKg){
         ftMaxRange.add(0,6.40*cyclistWeightKg);
         ftMaxRange.add(1,6.31*cyclistWeightKg);

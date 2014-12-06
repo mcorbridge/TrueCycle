@@ -20,7 +20,8 @@ public class MainActivity extends Activity {
             mensWattData.getProWattData();
             mensWattData.getDomesticProWattData();
             mensWattData.getCat1WattData();
-
+            mensWattData.getCat2WattData();
+            mensWattData.getCat3WattData();
     }
 
 
