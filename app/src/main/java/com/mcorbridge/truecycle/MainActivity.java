@@ -2,14 +2,10 @@ package com.mcorbridge.truecycle;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.mcorbridge.truecycle.data.men.ProWattData;
-
-import java.util.ArrayList;
-import java.util.Iterator;
+import com.mcorbridge.truecycle.data.men.MensWattData;
 
 
 public class MainActivity extends Activity {
@@ -19,23 +15,12 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        ProWattData proWattData = new ProWattData();
-        proWattData.setCyclistWeightKg(85.0);
-        ArrayList proData = proWattData.getWattData();
+        MensWattData mensWattData = new MensWattData();
+            mensWattData.setCyclistWeight(85.0);
+            mensWattData.getProWattData();
+            mensWattData.getDomesticProWattData();
+            mensWattData.getCat1WattData();
 
-        ArrayList<String> wattCategories = new ArrayList<String>(4);
-        wattCategories.add(0, "5 second max range");
-        wattCategories.add(1, "1 minute max range");
-        wattCategories.add(2, "5 minute max range");
-        wattCategories.add(3, "functional threshold range");
-
-        for (int i = 0; i < proData.size(); i++) {
-            Log.d("-------------------- ", wattCategories.get(i) + " --------------------");
-            ArrayList wattRange = (ArrayList) proData.get(i);
-            for (int n = 0; n < wattRange.size(); n++) {
-                Log.d("", wattRange.get(n).toString());
-            }
-        }
     }
 
 
@@ -60,4 +45,6 @@ public class MainActivity extends Activity {
 
         return super.onOptionsItemSelected(item);
     }
+
+
 }
