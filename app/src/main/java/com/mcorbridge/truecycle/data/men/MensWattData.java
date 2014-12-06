@@ -31,6 +31,7 @@ public class MensWattData {
         wattCategories.add(2, "5 minute max range");
         wattCategories.add(3, "functional threshold range");
 
+        Log.d("-------------------- ",  " Pro --------------------");
         for (int i = 0; i < wattData.size(); i++) {
             Log.d("-------------------- ", wattCategories.get(i) + " --------------------");
             ArrayList wattRange = (ArrayList) wattData.get(i);
@@ -51,6 +52,7 @@ public class MensWattData {
         wattCategories.add(2, "5 minute max range");
         wattCategories.add(3, "functional threshold range");
 
+        Log.d("-------------------- ",  "Domestic Pro --------------------");
         for (int i = 0; i < wattData.size(); i++) {
             Log.d("-------------------- ", wattCategories.get(i) + " --------------------");
             ArrayList wattRange = (ArrayList) wattData.get(i);
@@ -71,6 +73,7 @@ public class MensWattData {
         wattCategories.add(2, "5 minute max range");
         wattCategories.add(3, "functional threshold range");
 
+        Log.d("-------------------- ",  "Cat 1 --------------------");
         for (int i = 0; i < wattData.size(); i++) {
             Log.d("-------------------- ", wattCategories.get(i) + " --------------------");
             ArrayList wattRange = (ArrayList) wattData.get(i);
