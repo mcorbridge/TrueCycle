@@ -43,56 +43,56 @@ public class RecreationalWattData {
 
     /* 12.08	11.8	11.53	11.26	10.99	10.72	10.44	10.17 */
     public ArrayList<Double> getFiveSecMaxRange(Double cyclistWeightKg){
-        fiveSecMaxRange.add(0,24.04*cyclistWeightKg);
-        fiveSecMaxRange.add(1,23.77*cyclistWeightKg);
-        fiveSecMaxRange.add(2,23.50*cyclistWeightKg);
-        fiveSecMaxRange.add(3,23.22*cyclistWeightKg);
-        fiveSecMaxRange.add(4,22.95*cyclistWeightKg);
-        fiveSecMaxRange.add(5,22.68*cyclistWeightKg);
-        fiveSecMaxRange.add(6,22.41*cyclistWeightKg);
-        fiveSecMaxRange.add(7,22.14*cyclistWeightKg);
+        fiveSecMaxRange.add(0,12.08*cyclistWeightKg);
+        fiveSecMaxRange.add(1,11.8*cyclistWeightKg);
+        fiveSecMaxRange.add(2,11.53*cyclistWeightKg);
+        fiveSecMaxRange.add(3,11.26*cyclistWeightKg);
+        fiveSecMaxRange.add(4,10.99*cyclistWeightKg);
+        fiveSecMaxRange.add(5,10.72*cyclistWeightKg);
+        fiveSecMaxRange.add(6,10.44*cyclistWeightKg);
+        fiveSecMaxRange.add(7,10.17*cyclistWeightKg);
 
         return fiveSecMaxRange;
     }
 
     /* 6.44	6.33	6.21	6.1	5.99	5.87	5.76	5.64 */
     public ArrayList<Double> getOneMinMaxRange(Double cyclistWeightKg){
-        oneMinMaxRange.add(0,11.50*cyclistWeightKg);
-        oneMinMaxRange.add(1,11.39*cyclistWeightKg);
-        oneMinMaxRange.add(2,11.27*cyclistWeightKg);
-        oneMinMaxRange.add(3,11.16*cyclistWeightKg);
-        oneMinMaxRange.add(4,11.04*cyclistWeightKg);
-        oneMinMaxRange.add(5,10.93*cyclistWeightKg);
-        oneMinMaxRange.add(6,10.81*cyclistWeightKg);
-        oneMinMaxRange.add(7,10.70*cyclistWeightKg);
+        oneMinMaxRange.add(0,6.44*cyclistWeightKg);
+        oneMinMaxRange.add(1,6.33*cyclistWeightKg);
+        oneMinMaxRange.add(2,6.21*cyclistWeightKg);
+        oneMinMaxRange.add(3,6.1*cyclistWeightKg);
+        oneMinMaxRange.add(4,5.99*cyclistWeightKg);
+        oneMinMaxRange.add(5,5.87*cyclistWeightKg);
+        oneMinMaxRange.add(6,5.76*cyclistWeightKg);
+        oneMinMaxRange.add(7,5.64*cyclistWeightKg);
 
         return oneMinMaxRange;
     }
 
     /* 3.05	2.95	2.84	2.74	2.64	2.53	2.43	2.33 */
     public ArrayList<Double> getFiveMinMaxRange(Double cyclistWeightKg){
-        fiveMinMaxRange.add(0,7.60*cyclistWeightKg);
-        fiveMinMaxRange.add(1,7.50*cyclistWeightKg);
-        fiveMinMaxRange.add(2,7.39*cyclistWeightKg);
-        fiveMinMaxRange.add(3,7.29*cyclistWeightKg);
-        fiveMinMaxRange.add(4,7.19*cyclistWeightKg);
-        fiveMinMaxRange.add(5,7.08*cyclistWeightKg);
-        fiveMinMaxRange.add(6,6.98*cyclistWeightKg);
-        fiveMinMaxRange.add(7,6.88*cyclistWeightKg);
+        fiveMinMaxRange.add(0,3.05*cyclistWeightKg);
+        fiveMinMaxRange.add(1,2.95*cyclistWeightKg);
+        fiveMinMaxRange.add(2,2.84*cyclistWeightKg);
+        fiveMinMaxRange.add(3,2.74*cyclistWeightKg);
+        fiveMinMaxRange.add(4,2.64*cyclistWeightKg);
+        fiveMinMaxRange.add(5,2.53*cyclistWeightKg);
+        fiveMinMaxRange.add(6,2.43*cyclistWeightKg);
+        fiveMinMaxRange.add(7,2.33*cyclistWeightKg);
 
         return fiveMinMaxRange;
     }
 
     /* 2.49	2.4	2.31	2.22	2.13	2.04	1.95	1.86 */
     public ArrayList<Double> getFtMaxRange(Double cyclistWeightKg){
-        ftMaxRange.add(0,6.40*cyclistWeightKg);
-        ftMaxRange.add(1,6.31*cyclistWeightKg);
-        ftMaxRange.add(2,6.22*cyclistWeightKg);
-        ftMaxRange.add(3,6.13*cyclistWeightKg);
-        ftMaxRange.add(4,6.04*cyclistWeightKg);
-        ftMaxRange.add(5,5.96*cyclistWeightKg);
-        ftMaxRange.add(6,5.87*cyclistWeightKg);
-        ftMaxRange.add(7,5.78*cyclistWeightKg);
+        ftMaxRange.add(0,2.49*cyclistWeightKg);
+        ftMaxRange.add(1,2.4*cyclistWeightKg);
+        ftMaxRange.add(2,2.31*cyclistWeightKg);
+        ftMaxRange.add(3,2.22*cyclistWeightKg);
+        ftMaxRange.add(4,2.13*cyclistWeightKg);
+        ftMaxRange.add(5,2.04*cyclistWeightKg);
+        ftMaxRange.add(6,1.95*cyclistWeightKg);
+        ftMaxRange.add(7,1.86*cyclistWeightKg);
 
         return ftMaxRange;
     }
