@@ -124,4 +124,67 @@ public class MensWattData {
             }
         }
     }
+
+    public void getCat4WattData(){
+        Cat4WattData cat4WattData = new Cat4WattData();
+        cat4WattData.setCyclistWeightKg(cyclistWeight);
+        ArrayList wattData = cat4WattData.getWattData();
+
+        ArrayList<String> wattCategories = new ArrayList<String>(4);
+        wattCategories.add(0, "5 second max range");
+        wattCategories.add(1, "1 minute max range");
+        wattCategories.add(2, "5 minute max range");
+        wattCategories.add(3, "functional threshold range");
+
+        Log.d("-------------------- ",  "Cat 4 --------------------");
+        for (int i = 0; i < wattData.size(); i++) {
+            Log.d("-------------------- ", wattCategories.get(i) + " --------------------");
+            ArrayList wattRange = (ArrayList) wattData.get(i);
+            for (int n = 0; n < wattRange.size(); n++) {
+                Log.d("", wattRange.get(n).toString());
+            }
+        }
+    }
+
+    public void getCat5WattData(){
+        Cat5WattData cat5WattData = new Cat5WattData();
+        cat5WattData.setCyclistWeightKg(cyclistWeight);
+        ArrayList wattData = cat5WattData.getWattData();
+
+        ArrayList<String> wattCategories = new ArrayList<String>(4);
+        wattCategories.add(0, "5 second max range");
+        wattCategories.add(1, "1 minute max range");
+        wattCategories.add(2, "5 minute max range");
+        wattCategories.add(3, "functional threshold range");
+
+        Log.d("-------------------- ",  "Cat 5 --------------------");
+        for (int i = 0; i < wattData.size(); i++) {
+            Log.d("-------------------- ", wattCategories.get(i) + " --------------------");
+            ArrayList wattRange = (ArrayList) wattData.get(i);
+            for (int n = 0; n < wattRange.size(); n++) {
+                Log.d("", wattRange.get(n).toString());
+            }
+        }
+    }
+
+    public void getRecWattData(){
+        RecreationalWattData recreationalWattData = new RecreationalWattData();
+        recreationalWattData.setCyclistWeightKg(cyclistWeight);
+        ArrayList wattData = recreationalWattData.getWattData();
+
+        ArrayList<String> wattCategories = new ArrayList<String>(4);
+        wattCategories.add(0, "5 second max range");
+        wattCategories.add(1, "1 minute max range");
+        wattCategories.add(2, "5 minute max range");
+        wattCategories.add(3, "functional threshold range");
+
+        Log.d("-------------------- ",  "Recreational --------------------");
+        for (int i = 0; i < wattData.size(); i++) {
+            Log.d("-------------------- ", wattCategories.get(i) + " --------------------");
+            ArrayList wattRange = (ArrayList) wattData.get(i);
+            for (int n = 0; n < wattRange.size(); n++) {
+                Log.d("", wattRange.get(n).toString());
+            }
+        }
+    }
 }
