@@ -15,13 +15,7 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        MensWattData mensWattData = new MensWattData();
-            mensWattData.setCyclistWeight(85.0);
-            mensWattData.getProWattData();
-            mensWattData.getDomesticProWattData();
-            mensWattData.getCat1WattData();
-            mensWattData.getCat2WattData();
-            mensWattData.getCat3WattData();
+        getMensWattData();
     }
 
 
@@ -45,6 +39,19 @@ public class MainActivity extends Activity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void getMensWattData(){
+        MensWattData mensWattData = new MensWattData();
+        mensWattData.setCyclistWeight(80.0);
+        mensWattData.getProWattData();
+        mensWattData.getDomesticProWattData();
+        mensWattData.getCat1WattData();
+        mensWattData.getCat2WattData();
+        mensWattData.getCat3WattData();
+        mensWattData.getCat4WattData();
+        mensWattData.getCat5WattData();
+        mensWattData.getRecWattData();
     }
 
 
