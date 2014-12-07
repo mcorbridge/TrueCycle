@@ -41,7 +41,7 @@ public class Cat5WattData {
         return pounds * 0.453592;
     }
 
-   /* 13.98	13.71	13.44	13.16	12.89	12.62	12.35	12.08 */
+   /* 13.98	 13.71	13.44	13.16	12.89	12.62	12.35	12.08 */
     public ArrayList<Double> getFiveSecMaxRange(Double cyclistWeightKg){
         fiveSecMaxRange.add(0,24.04*cyclistWeightKg);
         fiveSecMaxRange.add(1,23.77*cyclistWeightKg);
