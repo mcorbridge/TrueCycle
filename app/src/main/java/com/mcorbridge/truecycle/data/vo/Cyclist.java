@@ -53,13 +53,13 @@ public class Cyclist {
 
     // ----------------------------------------------
 
-    public String getEffort() {
+    public int getEffort() {
         return effort;
     }
 
-    public void setEffort(String effort) {
+    public void setEffort(int effort) {
         this.effort = effort;
     }
 
-    public String effort;
+    public int effort;
 }

@@ -19,7 +19,9 @@ import android.widget.TextView;
 
 import com.mcorbridge.truecycle.data.men.MensWattData;
 import com.mcorbridge.truecycle.data.vo.Cyclist;
+import com.mcorbridge.truecycle.exceptions.CyclistWeightNotProvidedException;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 
@@ -32,17 +34,7 @@ public class MainActivity extends Activity {
 
     private Cyclist cyclist;
 
-    private ArrayList proWattData;
-    private ArrayList domesticProWattData;
-    private ArrayList cat1WattData;
-    private ArrayList cat2WattData;
-    private ArrayList cat3WattData;
-    private ArrayList cat4WattData;
-    private ArrayList cat5WattData;
-    private ArrayList recWattData;
-
-    private String currentCategory;
-    private String currentLevel;
+    private MensWattData mensWattData;
 
     NumberPicker np1;
     NumberPicker np2;
@@ -51,6 +43,9 @@ public class MainActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        mensWattData = new MensWattData();
+
         setContentView(R.layout.activity_main);
     }
 
@@ -125,24 +120,15 @@ public class MainActivity extends Activity {
 
         if(radioButton.isChecked()){
             cyclist.setWeightUnit(this.KILOGRAMS);
-            getMensWattData(dblWeight);
+            cyclist.setWeight(dblWeight);
         }else{
             cyclist.setWeightUnit(this.POUNDS);
-            getMensWattData(dblWeight * 0.453592);
+            cyclist.setWeight(dblWeight * 0.453592);
         }
+        getMensWattData();
     }
 
-    public void getMensWattData(Double cyclistWeight){
-        MensWattData mensWattData = new MensWattData();
-        mensWattData.setCyclistWeight(cyclistWeight);
-        proWattData = mensWattData.getProWattData();
-        domesticProWattData = mensWattData.getDomesticProWattData();
-        cat1WattData = mensWattData.getCat1WattData();
-        cat2WattData = mensWattData.getCat2WattData();
-        cat3WattData = mensWattData.getCat3WattData();
-        cat4WattData = mensWattData.getCat4WattData();
-        cat5WattData = mensWattData.getCat5WattData();
-        recWattData =  mensWattData.getRecWattData();
+    public void getMensWattData(){
         setContentView(R.layout.activity_select_level);
     }
 
@@ -150,32 +136,56 @@ public class MainActivity extends Activity {
         RadioGroup g = (RadioGroup) findViewById(R.id.radioGroupCategory);
         int selected = g.getCheckedRadioButtonId();
         RadioButton b = (RadioButton) findViewById(selected);
-        currentCategory = b.getText().toString();
+        cyclist.setCategory(b.getText().toString());
         setContentView(R.layout.activity_show_effort);
         TextView mTextView = (TextView) findViewById(R.id.textView2);
-        mTextView.setText(currentCategory + " Watts");
+        mTextView.setText(cyclist.getCategory() + " Watts");
     }
 
     // bind the wattage range to a list view
     public void doSubmitEffort(View v){
+        //get effort
+        RadioGroup g = (RadioGroup) findViewById(R.id.radioGroupEffort);
+        int ndx = g.indexOfChild(findViewById(g.getCheckedRadioButtonId()));
+        cyclist.setEffort(ndx);
+
         setContentView(R.layout.activity_show_watts);
         TextView mTextView = (TextView) findViewById(R.id.textView3);
-        mTextView.setText(currentCategory + " Watts");
+        mTextView.setText(cyclist.getCategory() + " Watts*");
 
-        getSelectedCyclingCategory();
+        ArrayList<ArrayList> totalWattData = getSelectedCyclingCategoryWatts(cyclist.getCategory());
 
-        ArrayList list5secMax = (ArrayList)proWattData.get(0);
-        ArrayList<String> modifiedList = parseDouble(list5secMax);
+        ArrayList listEffort = totalWattData.get(cyclist.getEffort());
+        ArrayList<String> modifiedList = parseDouble(listEffort);
         ArrayAdapter<String> itemsAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, modifiedList);
         ListView listView = (ListView) findViewById(R.id.listView);
         listView.setAdapter(itemsAdapter);
     }
 
     //return the selected category
-    private void getSelectedCyclingCategory(){
-        RadioGroup radioGroup = (RadioGroup) findViewById(R.id.radioGroupCategory);
-        int i = radioGroup.getCheckedRadioButtonId();
-        Log.d("************* getCheckedRadioButtonId", String.valueOf(i) );
+    @SuppressWarnings("unchecked")
+    private ArrayList<ArrayList> getSelectedCyclingCategoryWatts(String category){
+        switch (category)
+        {
+            case "Pro":
+                return mensWattData.getProWattData(cyclist.getWeight());
+            case "Domestic Pro":
+                return mensWattData.getDomesticProWattData(cyclist.getWeight());
+            case "Cat 1":
+                return mensWattData.getCat1WattData(cyclist.getWeight());
+            case "Cat 2":
+                return mensWattData.getCat2WattData(cyclist.getWeight());
+            case "Cat 3":
+                return mensWattData.getCat3WattData(cyclist.getWeight());
+            case "Cat 4":
+                return mensWattData.getCat4WattData(cyclist.getWeight());
+            case "Cat 5":
+                return mensWattData.getCat5WattData(cyclist.getWeight());
+            case "Recreational":
+                return mensWattData.getRecWattData(cyclist.getWeight());
+            default:
+                return new ArrayList<>();
+        }
     }
 
     // parse the wattage value to show only the whole number
@@ -188,5 +198,25 @@ public class MainActivity extends Activity {
         }
         return arString;
     }
+
+    public void doBack_from_show_watts(View v){
+        setContentView(R.layout.activity_show_effort);
+        Log.d("cyclist vo ", inspectCyclist());
+    }
+
+    public void doBack_from_show_effort(View v){
+        setContentView(R.layout.activity_select_level);
+        Log.d("cyclist vo ", inspectCyclist());
+    }
+
+    public void doBack_from_select_level(View v){
+        setContentView(R.layout.activity_input_weight);
+        Log.d("cyclist vo ", inspectCyclist());
+    }
+
+    private String inspectCyclist(){
+        return this.cyclist.getWeight() + " " + this.cyclist.getEffort() + " " + this.cyclist.getCategory() + " " + this.cyclist.getGender() + " " + this.cyclist.getWeightUnit();
+    }
+
 
 }

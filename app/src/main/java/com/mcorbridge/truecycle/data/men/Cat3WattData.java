@@ -37,10 +37,6 @@ public class Cat3WattData {
         return a;
     }
 
-    public Double convertPoundToKilo(Double pounds){
-        return pounds * 0.453592;
-    }
-
 
     /* 17.51	17.24	16.97	16.7	16.43	16.15	15.88	15.61*/
     public ArrayList<Double> getFiveSecMaxRange(Double cyclistWeightKg){

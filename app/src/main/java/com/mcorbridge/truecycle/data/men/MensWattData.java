@@ -2,6 +2,8 @@ package com.mcorbridge.truecycle.data.men;
 
 import android.util.Log;
 
+import com.mcorbridge.truecycle.exceptions.CyclistWeightNotProvidedException;
+
 import java.util.ArrayList;
 
 /**
@@ -9,78 +11,57 @@ import java.util.ArrayList;
  */
 public class MensWattData {
 
-    public Double cyclistWeight;
 
-    public void MensWattData(){
+    public MensWattData(){
 
     }
 
-    public void setCyclistWeight(Double cyclistWeight){
-        this.cyclistWeight = cyclistWeight;
-    }
 
-
-    public ArrayList getProWattData(){
+    public ArrayList getProWattData(Double cyclistWeight){
         ProWattData proWattData = new ProWattData();
         proWattData.setCyclistWeightKg(cyclistWeight);
-        ArrayList wattData = proWattData.getWattData();
-
-        return wattData;
+        return proWattData.getWattData();
     }
 
-    public ArrayList getDomesticProWattData(){
+    public ArrayList getDomesticProWattData(Double cyclistWeight){
         DomesticProWattData domesticProWattData = new DomesticProWattData();
         domesticProWattData.setCyclistWeightKg(cyclistWeight);
-        ArrayList wattData = domesticProWattData.getWattData();
-
-        return wattData;
+        return domesticProWattData.getWattData();
     }
 
-    public ArrayList getCat1WattData(){
+    public ArrayList getCat1WattData(Double cyclistWeight){
         Cat1WattData cat1WattData = new Cat1WattData();
         cat1WattData.setCyclistWeightKg(cyclistWeight);
-        ArrayList wattData = cat1WattData.getWattData();
-
-        return wattData;
+        return cat1WattData.getWattData();
     }
 
-    public ArrayList getCat2WattData(){
+    public ArrayList getCat2WattData(Double cyclistWeight){
         Cat2WattData cat2WattData = new Cat2WattData();
         cat2WattData.setCyclistWeightKg(cyclistWeight);
-        ArrayList wattData = cat2WattData.getWattData();
-
-        return wattData;
+        return cat2WattData.getWattData();
     }
 
-    public ArrayList getCat3WattData(){
+    public ArrayList getCat3WattData(Double cyclistWeight){
         Cat3WattData cat3WattData = new Cat3WattData();
         cat3WattData.setCyclistWeightKg(cyclistWeight);
-        ArrayList wattData = cat3WattData.getWattData();
-
-        return wattData;
+        return cat3WattData.getWattData();
     }
 
-    public ArrayList getCat4WattData(){
+    public ArrayList getCat4WattData(Double cyclistWeight){
         Cat4WattData cat4WattData = new Cat4WattData();
         cat4WattData.setCyclistWeightKg(cyclistWeight);
-        ArrayList wattData = cat4WattData.getWattData();
-
-        return wattData;
+        return cat4WattData.getWattData();
     }
 
-    public ArrayList getCat5WattData(){
+    public ArrayList getCat5WattData(Double cyclistWeight){
         Cat5WattData cat5WattData = new Cat5WattData();
         cat5WattData.setCyclistWeightKg(cyclistWeight);
-        ArrayList wattData = cat5WattData.getWattData();
-
-        return wattData;
+        return cat5WattData.getWattData();
     }
 
-    public ArrayList getRecWattData(){
+    public ArrayList getRecWattData(Double cyclistWeight){
         RecreationalWattData recreationalWattData = new RecreationalWattData();
         recreationalWattData.setCyclistWeightKg(cyclistWeight);
-        ArrayList wattData = recreationalWattData.getWattData();
-
-        return wattData;
+        return recreationalWattData.getWattData();
     }
 }
