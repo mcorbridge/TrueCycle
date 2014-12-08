@@ -4,5 +4,21 @@
     <string name="app_name">TrueCycle</string>
     <string name="hello_world">True Cycle!</string>
     <string name="action_settings">Settings</string>
+    <string name="radio_kilogram">Kilograms</string>
+    <string name="radio_pound">Pounds</string>
+
+    <string name="radio_pro">Pro</string>
+    <string name="radio_domPro">Domestic Pro</string>
+    <string name="radio_cat1">Cat 1</string>
+    <string name="radio_cat2">Cat 2</string>
+    <string name="radio_cat3">Cat 3</string>
+    <string name="radio_cat4">Cat 4</string>
+    <string name="radio_cat5">Cat 5</string>
+    <string name="radio_rec">Recreational</string>
+
+    <string name="radio_5secMax">5 second max</string>
+    <string name="radio_1minAvg">1 min avg</string>
+    <string name="radio_5minAvg">5 min avg</string>
+    <string name="radio_ft">functional threshold</string>
 
 </resources>
