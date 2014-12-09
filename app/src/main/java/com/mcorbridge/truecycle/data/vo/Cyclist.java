@@ -41,6 +41,18 @@ public class Cyclist {
 
     // ----------------------------------------------
 
+    public String getWeightString() {
+        return weightString;
+    }
+
+    public void setWeightString(String weightString) {
+        this.weightString = weightString;
+    }
+
+    public String weightString;
+
+    // ----------------------------------------------
+
     public String getCategory() {
         return category;
     }
@@ -53,9 +65,7 @@ public class Cyclist {
 
     // ----------------------------------------------
 
-    public int getEffort() {
-        return effort;
-    }
+    public int getEffort() { return effort;}
 
     public void setEffort(int effort) {
         this.effort = effort;

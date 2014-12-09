@@ -125,6 +125,7 @@ public class MainActivity extends Activity {
             cyclist.setWeightUnit(this.POUNDS);
             cyclist.setWeight(dblWeight * 0.453592);
         }
+        cyclist.setWeightString(mEdit.getText().toString());
         getMensWattData();
     }
 
@@ -199,24 +200,89 @@ public class MainActivity extends Activity {
         return arString;
     }
 
+    private String parseDouble(Double dbl){
+        return dbl.toString().split("\\.")[0];
+    }
+
     public void doBack_from_show_watts(View v){
         setContentView(R.layout.activity_show_effort);
-        Log.d("cyclist vo ", inspectCyclist());
+        setEffortView();
     }
 
     public void doBack_from_show_effort(View v){
         setContentView(R.layout.activity_select_level);
-        Log.d("cyclist vo ", inspectCyclist());
+        setCategoryView();
     }
 
     public void doBack_from_select_level(View v){
         setContentView(R.layout.activity_input_weight);
-        Log.d("cyclist vo ", inspectCyclist());
+        setWeightView();
     }
 
+    // upon Back button, ensure the previously selected effort is shown as selected
+    private void setEffortView(){
+        RadioGroup g = (RadioGroup)findViewById(R.id.radioGroupEffort);
+        RadioButton rb = (RadioButton)g.getChildAt(cyclist.getEffort());
+        rb.setChecked(true);
+    }
+
+    // upon Back button, ensure the previously selected category is shown as selected
+    private void setCategoryView(){
+        int ndx = 0;
+        RadioGroup g = (RadioGroup)findViewById(R.id.radioGroupCategory);
+        switch(cyclist.getCategory())
+        {
+            case "Pro":
+                ndx = 0;
+                break;
+
+            case "Domestic Pro":
+                ndx = 1;
+                break;
+
+            case "Cat 1":
+                ndx = 2;
+                break;
+
+            case "Cat 2":
+                ndx = 3;
+                break;
+
+            case "Cat 3":
+                ndx = 4;
+                break;
+
+            case "Cat 4":
+                ndx = 5;
+                break;
+
+            case "Cat 5":
+                ndx = 6;
+                break;
+
+            case "Recreational":
+                ndx = 7;
+                break;
+        }
+        RadioButton rb = (RadioButton)g.getChildAt(ndx);
+        rb.setChecked(true);
+    }
+
+    private void setWeightView(){
+        RadioButton rb;
+        if(cyclist.getWeightUnit() == KILOGRAMS){
+            rb = (RadioButton)findViewById(R.id.radioKilogram);
+            rb.setChecked(true);
+        }else{
+            rb = (RadioButton)findViewById(R.id.radioPound);
+            rb.setChecked(true);
+        }
+        EditText et = (EditText)findViewById(R.id.editText);
+        et.setText(cyclist.getWeightString());
+    }
+
+    // little ditty to look inside the cyclist vo
     private String inspectCyclist(){
         return this.cyclist.getWeight() + " " + this.cyclist.getEffort() + " " + this.cyclist.getCategory() + " " + this.cyclist.getGender() + " " + this.cyclist.getWeightUnit();
     }
-
-
 }
