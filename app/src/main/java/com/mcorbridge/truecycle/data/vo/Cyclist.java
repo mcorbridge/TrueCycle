@@ -5,15 +5,15 @@ package com.mcorbridge.truecycle.data.vo;
  */
 public class Cyclist {
 
-    public String getGender() {
+    public int getGender() {
         return gender;
     }
 
-    public void setGender(String gender) {
+    public void setGender(int gender) {
         this.gender = gender;
     }
 
-    public String gender;
+    public int gender;
 
      // ----------------------------------------------
 
