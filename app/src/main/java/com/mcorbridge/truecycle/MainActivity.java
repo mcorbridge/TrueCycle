@@ -75,8 +75,6 @@ public class MainActivity extends Activity {
     public void doViewInputWeight(View v){
         // create new vo for the cyclist
         cyclist = new Cyclist();
-        //TODO add gender
-        cyclist.setGender(MALE);
 
         setContentView(R.layout.activity_input_weight);
 
@@ -110,15 +108,21 @@ public class MainActivity extends Activity {
     }
 
     public void doSubmit(View v){
+        RadioGroup radioGroup = (RadioGroup) findViewById(R.id.radioGender);
+        int radioButtonID = radioGroup.getCheckedRadioButtonId();
+        View radioButton = radioGroup.findViewById(radioButtonID);
+        int ndx = radioGroup.indexOfChild(radioButton);
+        cyclist.setGender(ndx);
+
         EditText mEdit = (EditText)findViewById(R.id.editText);
         Integer intWeight = Integer.parseInt(mEdit.getText().toString());
         Double dblWeight = (double)intWeight;
 
         cyclist.setWeight(dblWeight);
 
-        RadioButton radioButton = (RadioButton)findViewById(R.id.radioKilogram);
+        RadioButton rb = (RadioButton)findViewById(R.id.radioKilogram);
 
-        if(radioButton.isChecked()){
+        if(rb.isChecked()){
             cyclist.setWeightUnit(this.KILOGRAMS);
             cyclist.setWeight(dblWeight);
         }else{
@@ -279,6 +283,14 @@ public class MainActivity extends Activity {
         }
         EditText et = (EditText)findViewById(R.id.editText);
         et.setText(cyclist.getWeightString());
+
+        //set gender to model
+        RadioGroup radioGroup = (RadioGroup) findViewById(R.id.radioGender);
+        if(cyclist.getGender() == 0){
+            radioGroup.check(R.id.radioMale);
+        }else{
+            radioGroup.check(R.id.radioFemale);
+        }
     }
 
     // little ditty to look inside the cyclist vo
