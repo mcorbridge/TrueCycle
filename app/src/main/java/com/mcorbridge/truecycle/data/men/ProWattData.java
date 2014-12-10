@@ -40,11 +40,14 @@ public class ProWattData {
         return a;
     }
 
-    public Double convertPoundToKilo(Double pounds){
-        return pounds * 0.453592;
-    }
+   /*
+    24.04	23.77	23.5	23.22	22.95	22.68	22.41	22.14
+    11.5	11.39	11.27	11.16	11.04	10.93	10.81	10.7
+    7.6	    7.5	    7.39	7.29	7.19	7.08	6.98	6.88
+    6.4	    6.31	6.22	6.13	6.04	5.96	5.87	5.78
+    */
 
-
+    /* 24.04	23.77	23.5	23.22	22.95	22.68	22.41	22.14 */
     public ArrayList<Double> getFiveSecMaxRange(Double cyclistWeightKg){
         fiveSecMaxRange.add(0,24.04*cyclistWeightKg);
         fiveSecMaxRange.add(1,23.77*cyclistWeightKg);
@@ -58,6 +61,7 @@ public class ProWattData {
         return fiveSecMaxRange;
     }
 
+    /* 11.5	11.39	11.27	11.16	11.04	10.93	10.81	10.7 */
     public ArrayList<Double> getOneMinAvgRange(Double cyclistWeightKg){
         oneMinAvgRange.add(0,11.50*cyclistWeightKg);
         oneMinAvgRange.add(1,11.39*cyclistWeightKg);
@@ -71,6 +75,7 @@ public class ProWattData {
         return oneMinAvgRange;
     }
 
+    /* 7.6	    7.5	    7.39	7.29	7.19	7.08	6.98	6.88 */
     public ArrayList<Double> getFiveMinAvgRange(Double cyclistWeightKg){
         fiveMinAvgRange.add(0,7.60*cyclistWeightKg);
         fiveMinAvgRange.add(1,7.50*cyclistWeightKg);
@@ -84,6 +89,7 @@ public class ProWattData {
         return fiveMinAvgRange;
     }
 
+    /* 6.4	    6.31	6.22	6.13	6.04	5.96	5.87	5.78 */
     public ArrayList<Double> getFtAvgRange(Double cyclistWeightKg){
         ftAvgRange.add(0,6.40*cyclistWeightKg);
         ftAvgRange.add(1,6.31*cyclistWeightKg);
