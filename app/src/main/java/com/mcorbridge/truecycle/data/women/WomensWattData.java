@@ -1,14 +1,23 @@
-package com.mcorbridge.truecycle.data.men;
+package com.mcorbridge.truecycle.data.women;
+
+import com.mcorbridge.truecycle.data.women.Cat1WattData;
+import com.mcorbridge.truecycle.data.women.Cat2WattData;
+import com.mcorbridge.truecycle.data.women.Cat3WattData;
+import com.mcorbridge.truecycle.data.women.Cat4WattData;
+import com.mcorbridge.truecycle.data.women.Cat5WattData;
+import com.mcorbridge.truecycle.data.women.DomesticProWattData;
+import com.mcorbridge.truecycle.data.women.ProWattData;
+import com.mcorbridge.truecycle.data.women.RecreationalWattData;
 
 import java.util.ArrayList;
 
 /**
  * Created by Mike on 12/5/2014.
  */
-public class MensWattData {
+public class WomensWattData {
 
 
-    public MensWattData(){
+    public WomensWattData(){
 
     }
 

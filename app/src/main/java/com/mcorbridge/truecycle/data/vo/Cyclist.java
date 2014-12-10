@@ -2,9 +2,10 @@ package com.mcorbridge.truecycle.data.vo;
 
 /**
  * Created by Mike on 12/8/2014.
+ * copyright Michael D. Corbridge
  */
 public class Cyclist {
-
+    // 0 = male, 1 = female
     public int getGender() {
         return gender;
     }

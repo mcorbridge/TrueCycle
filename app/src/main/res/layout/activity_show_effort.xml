@@ -30,7 +30,8 @@
             android:id="@+id/radioPro"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/radio_5secMax"/>
+            android:text="@string/radio_5secMax"
+            android:checked="true"/>
 
         <RadioButton
             android:id="@+id/radioCat1"

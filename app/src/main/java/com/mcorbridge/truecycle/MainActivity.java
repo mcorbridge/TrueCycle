@@ -3,6 +3,8 @@ package com.mcorbridge.truecycle;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.text.method.DigitsKeyListener;
 import android.util.Log;
 import android.view.Menu;
@@ -10,6 +12,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.NumberPicker;
@@ -18,6 +21,7 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.mcorbridge.truecycle.data.men.MensWattData;
+import com.mcorbridge.truecycle.data.women.WomensWattData;
 import com.mcorbridge.truecycle.data.vo.Cyclist;
 import com.mcorbridge.truecycle.exceptions.CyclistWeightNotProvidedException;
 
@@ -27,14 +31,15 @@ import java.util.ArrayList;
 
 public class MainActivity extends Activity {
 
-    private final static String MALE = "male";
-    private final static String FEMALE = "female";
     private final static String KILOGRAMS = "kilograms";
     private final static String POUNDS = "pounds";
+
+    private boolean textListenerExists = false;
 
     private Cyclist cyclist;
 
     private MensWattData mensWattData;
+    private WomensWattData womensWattData;
 
     NumberPicker np1;
     NumberPicker np2;
@@ -43,9 +48,8 @@ public class MainActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         mensWattData = new MensWattData();
-
+        womensWattData = new WomensWattData();
         setContentView(R.layout.activity_main);
     }
 
@@ -82,7 +86,35 @@ public class MainActivity extends Activity {
         mEdit.requestFocus();
         InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.showSoftInput(mEdit, InputMethodManager.SHOW_FORCED);
+
+        setAddTextListener();
         //setNumberPickerValues();
+    }
+
+    private void setAddTextListener(){
+        EditText mEdit = (EditText)findViewById(R.id.editText);
+        mEdit.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                //Log.d("beforeTextChanged",s.toString());
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                //Log.d("onTextChanged",s.toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                // Log.d("afterTextChanged",s.toString());
+                Button button = (Button)findViewById(R.id.button);
+                if(s.toString().length() > 0){
+                    button.setEnabled(true);
+                }else{
+                    button.setEnabled(false);
+                }
+            }
+        });
     }
 
     private void setNumberPickerValues(){
@@ -170,27 +202,53 @@ public class MainActivity extends Activity {
     //return the selected category
     @SuppressWarnings("unchecked")
     private ArrayList<ArrayList> getSelectedCyclingCategoryWatts(String category){
-        switch (category)
-        {
-            case "Pro":
-                return mensWattData.getProWattData(cyclist.getWeight());
-            case "Domestic Pro":
-                return mensWattData.getDomesticProWattData(cyclist.getWeight());
-            case "Cat 1":
-                return mensWattData.getCat1WattData(cyclist.getWeight());
-            case "Cat 2":
-                return mensWattData.getCat2WattData(cyclist.getWeight());
-            case "Cat 3":
-                return mensWattData.getCat3WattData(cyclist.getWeight());
-            case "Cat 4":
-                return mensWattData.getCat4WattData(cyclist.getWeight());
-            case "Cat 5":
-                return mensWattData.getCat5WattData(cyclist.getWeight());
-            case "Recreational":
-                return mensWattData.getRecWattData(cyclist.getWeight());
-            default:
-                return new ArrayList<>();
+        if(cyclist.getGender() == 0){
+            switch (category)
+            {
+                case "Pro":
+                    return mensWattData.getProWattData(cyclist.getWeight());
+                case "Domestic Pro":
+                    return mensWattData.getDomesticProWattData(cyclist.getWeight());
+                case "Cat 1":
+                    return mensWattData.getCat1WattData(cyclist.getWeight());
+                case "Cat 2":
+                    return mensWattData.getCat2WattData(cyclist.getWeight());
+                case "Cat 3":
+                    return mensWattData.getCat3WattData(cyclist.getWeight());
+                case "Cat 4":
+                    return mensWattData.getCat4WattData(cyclist.getWeight());
+                case "Cat 5":
+                    return mensWattData.getCat5WattData(cyclist.getWeight());
+                case "Recreational":
+                    return mensWattData.getRecWattData(cyclist.getWeight());
+                default:
+                    return new ArrayList<>();
+            }
+        }else{
+            switch (category)
+            {
+                case "Pro":
+                    return womensWattData.getProWattData(cyclist.getWeight());
+                case "Domestic Pro":
+                    return womensWattData.getDomesticProWattData(cyclist.getWeight());
+                case "Cat 1":
+                    return womensWattData.getCat1WattData(cyclist.getWeight());
+                case "Cat 2":
+                    return womensWattData.getCat2WattData(cyclist.getWeight());
+                case "Cat 3":
+                    return womensWattData.getCat3WattData(cyclist.getWeight());
+                case "Cat 4":
+                    return womensWattData.getCat4WattData(cyclist.getWeight());
+                case "Cat 5":
+                    return womensWattData.getCat5WattData(cyclist.getWeight());
+                case "Recreational":
+                    return womensWattData.getRecWattData(cyclist.getWeight());
+                default:
+                    return new ArrayList<>();
+            }
         }
+
+
     }
 
     // parse the wattage value to show only the whole number
@@ -208,6 +266,8 @@ public class MainActivity extends Activity {
         return dbl.toString().split("\\.")[0];
     }
 
+
+    // screen navigation
     public void doBack_from_show_watts(View v){
         setContentView(R.layout.activity_show_effort);
         setEffortView();
@@ -284,6 +344,7 @@ public class MainActivity extends Activity {
         EditText et = (EditText)findViewById(R.id.editText);
         et.setText(cyclist.getWeightString());
 
+
         //set gender to model
         RadioGroup radioGroup = (RadioGroup) findViewById(R.id.radioGender);
         if(cyclist.getGender() == 0){
@@ -291,6 +352,10 @@ public class MainActivity extends Activity {
         }else{
             radioGroup.check(R.id.radioFemale);
         }
+
+        Button button = (Button)findViewById(R.id.button);
+        button.setEnabled(true);
+        setAddTextListener();
     }
 
     // little ditty to look inside the cyclist vo

@@ -17,7 +17,7 @@ public class ProWattData {
     public ArrayList<Double> fiveMinAvgRange = new ArrayList<Double>(8);
     public ArrayList<Double> ftAvgRange = new ArrayList<Double>(8);
 
-    public void ProWattData(){
+    public ProWattData(){
 
     }
 

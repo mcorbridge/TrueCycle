@@ -20,7 +20,8 @@
             android:id="@+id/radioPro"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/radio_pro"/>
+            android:text="@string/radio_pro"
+            android:checked="true"/>
 
         <RadioButton
             android:id="@+id/radioDomPro"

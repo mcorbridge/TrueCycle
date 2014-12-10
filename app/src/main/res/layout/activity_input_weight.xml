@@ -27,7 +27,7 @@
             android:layout_height="wrap_content"
             android:text="male"
             android:id="@+id/radioMale"
-            android:checked="false"/>
+            android:checked="true"/>
 
         <RadioButton
             android:layout_width="wrap_content"
@@ -45,7 +45,9 @@
         android:inputType="number"
         android:hint="input weight"
         android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:digits="0,1,2,3,4,5,6,7,8,9"
+        android:maxLength="3"/>
 
 
     <RadioGroup
@@ -78,7 +80,8 @@
         android:onClick="doSubmit"
         android:layout_marginBottom="61dp"
         android:layout_alignParentBottom="true"
-        android:layout_alignEnd="@+id/editText" />
+        android:layout_alignEnd="@+id/editText"
+        android:enabled="false"/>
 
 
 
