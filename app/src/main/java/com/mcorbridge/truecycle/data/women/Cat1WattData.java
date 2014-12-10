@@ -37,6 +37,13 @@ public class Cat1WattData {
         return a;
     }
 
+    /*
+    16.83	16.62	16.4	16.19	15.97	15.76	15.54	15.32
+    8.2	    8.11	8.02	7.93	7.84	7.75	7.66	7.57
+    5.5	    5.41	5.31	5.22	5.13	5.04	4.94	4.85
+    4.7	    4.62	4.54	4.46	4.38	4.29	4.21	4.13
+     */
+
     /* 16.62	16.4	16.19	15.97	15.76	15.54	15.32	15.11*/
     public ArrayList<Double> getFiveSecMaxRange(Double cyclistWeightKg){
         fiveSecMaxRange.add(0,16.62*cyclistWeightKg);

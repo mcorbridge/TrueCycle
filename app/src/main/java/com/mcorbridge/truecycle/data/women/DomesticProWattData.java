@@ -41,6 +41,14 @@ public class DomesticProWattData {
         return pounds * 0.453592;
     }
 
+    /*
+    18.13	17.91	17.7	17.48	17.26	17.05	16.83	16.62
+    8.75	8.66	8.56	8.47	8.38	8.29	8.2	    8.11
+    6.05	5.96	5.87	5.78	5.68	5.59	5.5	    5.41
+    5.2	    5.12	5.03	4.95	4.87	4.79	4.7	    4.62
+    */
+
+
     /* 18.13	17.91	17.7	17.48	17.26	17.05	16.83	16.62 */
     public ArrayList<Double> getFiveSecMaxRange(Double cyclistWeightKg){
         fiveSecMaxRange.add(0,18.13*cyclistWeightKg);
