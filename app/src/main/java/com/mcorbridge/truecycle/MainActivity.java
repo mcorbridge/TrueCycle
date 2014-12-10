@@ -5,7 +5,6 @@ import android.content.Context;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.text.method.DigitsKeyListener;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -21,11 +20,9 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.mcorbridge.truecycle.data.men.MensWattData;
-import com.mcorbridge.truecycle.data.women.WomensWattData;
 import com.mcorbridge.truecycle.data.vo.Cyclist;
-import com.mcorbridge.truecycle.exceptions.CyclistWeightNotProvidedException;
+import com.mcorbridge.truecycle.data.women.WomensWattData;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 
@@ -33,8 +30,6 @@ public class MainActivity extends Activity {
 
     private final static String KILOGRAMS = "kilograms";
     private final static String POUNDS = "pounds";
-
-    private boolean textListenerExists = false;
 
     private Cyclist cyclist;
 
@@ -262,11 +257,6 @@ public class MainActivity extends Activity {
         return arString;
     }
 
-    private String parseDouble(Double dbl){
-        return dbl.toString().split("\\.")[0];
-    }
-
-
     // screen navigation
     public void doBack_from_show_watts(View v){
         setContentView(R.layout.activity_show_effort);
@@ -334,6 +324,7 @@ public class MainActivity extends Activity {
 
     private void setWeightView(){
         RadioButton rb;
+
         if(cyclist.getWeightUnit() == KILOGRAMS){
             rb = (RadioButton)findViewById(R.id.radioKilogram);
             rb.setChecked(true);
@@ -341,12 +332,13 @@ public class MainActivity extends Activity {
             rb = (RadioButton)findViewById(R.id.radioPound);
             rb.setChecked(true);
         }
+
         EditText et = (EditText)findViewById(R.id.editText);
         et.setText(cyclist.getWeightString());
 
-
         //set gender to model
         RadioGroup radioGroup = (RadioGroup) findViewById(R.id.radioGender);
+
         if(cyclist.getGender() == 0){
             radioGroup.check(R.id.radioMale);
         }else{
@@ -360,6 +352,12 @@ public class MainActivity extends Activity {
 
     // little ditty to look inside the cyclist vo
     private String inspectCyclist(){
-        return this.cyclist.getWeight() + " " + this.cyclist.getEffort() + " " + this.cyclist.getCategory() + " " + this.cyclist.getGender() + " " + this.cyclist.getWeightUnit();
+        return  "category: " + this.cyclist.getCategory() + " " +
+                "effort: " + this.cyclist.getEffort() + " " +
+                "gender: " + this.cyclist.getGender() + " " +
+                "weight(dbl): " + this.cyclist.getWeight() + " " +
+                "weight(str): " + this.cyclist.getWeightString() + " " +
+                "units: " + this.cyclist.getWeightUnit();
+
     }
 }
