@@ -36,6 +36,13 @@ public class MainActivity extends Activity {
     private MensWattData mensWattData;
     private WomensWattData womensWattData;
 
+    String aboutText = "This app is based on data collected by  Dr. Andy Coggan, a coach at 'TrainingPeaks, and an authors of 'Training and Racing with a Power Meter'." +
+            "This is the most widely accepted and referenced benchmark for power output based on rider category.These power levels don’t necessarily go across in a straight" +
+            " a line. You’ll be stronger at somethings over others and most riders probably won’t be able to produce these wattages in all zones.  " +
+            "For example, an 80kg rider would have to generate over 1900 watts to be a top sprinter according to this chart.  Not likely.  A guy " +
+            "like Cavendish is producing 22-23 watts/kg in all those sprints he’s been winning (he’s 70kg and laying down about 1500-1600 watts) " +
+            "and that makes sense on this chart.";
+
     NumberPicker np1;
     NumberPicker np2;
     NumberPicker np3;
@@ -46,6 +53,7 @@ public class MainActivity extends Activity {
         mensWattData = new MensWattData();
         womensWattData = new WomensWattData();
         setContentView(R.layout.activity_main);
+        //setContentView(R.layout.activity_layout_test);
     }
 
 
@@ -63,12 +71,17 @@ public class MainActivity extends Activity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        switch (item.getItemId()) {
+            case R.id.action_home:
+                setContentView(R.layout.activity_main);
+                return true;
+            case R.id.action_about:
+                setContentView(R.layout.activity_about);
+                setAboutContent();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
-
-        return super.onOptionsItemSelected(item);
     }
 
     public void doViewInputWeight(View v){
@@ -359,5 +372,14 @@ public class MainActivity extends Activity {
                 "weight(str): " + this.cyclist.getWeightString() + " " +
                 "units: " + this.cyclist.getWeightUnit();
 
+    }
+
+    public void doFoo(View v){
+        Log.d("do", " foo");
+    }
+
+    public void setAboutContent(){
+        TextView textView = (TextView) findViewById(R.id.address1);
+        textView.setText(this.aboutText);
     }
 }
