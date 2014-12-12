@@ -9,6 +9,15 @@
         android:src="@drawable/btn_back"
         android:onClick="doBack_from_select_level"/>
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Large Text"
+        android:id="@+id/textView9"
+        android:layout_below="@+id/imageView"
+        android:layout_alignEnd="@+id/button3" />
+
     <RadioGroup
         android:id="@+id/radioGroupCategory"
         android:layout_width="wrap_content"
@@ -65,8 +74,6 @@
             android:layout_height="wrap_content"
             android:text="@string/radio_rec"/>
 
-
-
     </RadioGroup>
 
     <Button
@@ -78,5 +85,7 @@
         android:layout_below="@+id/radioGroupCategory"
         android:layout_alignStart="@+id/radioGroupCategory"
         android:layout_marginTop="39dp" />
+
+
 
 </RelativeLayout>
