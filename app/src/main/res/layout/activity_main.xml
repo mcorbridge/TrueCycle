@@ -15,20 +15,20 @@
         android:text="TrueCycle"
         android:id="@+id/textView"
         android:textSize="60dp"
+        android:layout_marginTop="20dp"
         android:fontFamily="Arial"
-        android:layout_marginTop="114dp"
         android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Go"
-        android:id="@+id/button2"
-        android:onClick="doViewInputWeight"
-        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true" />
 
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView2"
+        android:src="@drawable/start_btn"
+        android:layout_below="@+id/textView"
+        android:layout_alignStart="@+id/textView"
+        android:layout_marginTop="85dp"
+        android:onClick="doViewInputWeight"/>
 
 
 </RelativeLayout>

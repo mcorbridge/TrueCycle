@@ -36,12 +36,13 @@ public class MainActivity extends Activity {
     private MensWattData mensWattData;
     private WomensWattData womensWattData;
 
-    String aboutText = "This app is based on data collected by  Dr. Andy Coggan, a coach at 'TrainingPeaks, and an authors of 'Training and Racing with a Power Meter'." +
-            "This is the most widely accepted and referenced benchmark for power output based on rider category.These power levels don’t necessarily go across in a straight" +
-            " a line. You’ll be stronger at somethings over others and most riders probably won’t be able to produce these wattages in all zones.  " +
-            "For example, an 80kg rider would have to generate over 1900 watts to be a top sprinter according to this chart.  Not likely.  A guy " +
-            "like Cavendish is producing 22-23 watts/kg in all those sprints he’s been winning (he’s 70kg and laying down about 1500-1600 watts) " +
-            "and that makes sense on this chart.";
+    String aboutText = "This app is based on data collected by Dr. Andy Coggan, a cycling coach at TrainingPeaks (trainingpeaks.com), and an author of 'Training and Racing with a Power Meter'." +
+            "This is the most widely accepted and referenced benchmark for power output based on rider category.\n\n " +
+            "Note that a cyclist may not measure consistently within the separate categories. This means that although a cyclist can generate listed wattage within one category " +
+            "(for example, 5 sec max), they may average higher/lower in others.\n\n" +
+            "Using the app is relatively straightforward.  Enter (or select) the appropriate parameters to view a range of watts at a specific effort for the required athletic level." +
+            "Navigate between the screens to adjust the values to review wattage ranges for different cyclist weight, category and effort\n\n" +
+            "feedback: mikecorbridge@gmail.com";
 
     NumberPicker np1;
     NumberPicker np2;
@@ -196,7 +197,7 @@ public class MainActivity extends Activity {
 
         setContentView(R.layout.activity_show_watts);
         TextView mTextView = (TextView) findViewById(R.id.textView3);
-        mTextView.setText(cyclist.getCategory() + " Watts*");
+        mTextView.setText(cyclist.getCategory() + " " + getEffortString(cyclist.getEffort()) + " Watts");
 
         ArrayList<ArrayList> totalWattData = getSelectedCyclingCategoryWatts(cyclist.getCategory());
 
@@ -333,6 +334,25 @@ public class MainActivity extends Activity {
         }
         RadioButton rb = (RadioButton)g.getChildAt(ndx);
         rb.setChecked(true);
+    }
+
+    // set header text in activity_show_effort
+    private String getEffortString(int effort){
+        switch(effort)
+        {
+            case 0:
+            return "5 second max";
+
+            case 1:
+            return "1 minute average";
+
+            case 2:
+            return "5 minute average";
+
+            case 3:
+            return "functional threshold";
+        }
+        return "";
     }
 
     private void setWeightView(){
