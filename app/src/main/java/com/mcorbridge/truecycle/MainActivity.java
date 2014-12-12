@@ -270,8 +270,6 @@ public class MainActivity extends Activity {
                     return new ArrayList<>();
             }
         }
-
-
     }
 
     // parse the wattage value to show only the whole number
