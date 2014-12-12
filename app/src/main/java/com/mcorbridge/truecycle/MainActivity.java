@@ -171,11 +171,16 @@ public class MainActivity extends Activity {
             cyclist.setWeight(dblWeight * 0.453592);
         }
         cyclist.setWeightString(mEdit.getText().toString());
-        getMensWattData();
+        showSelectCategoryView();
     }
 
-    public void getMensWattData(){
+    public void showSelectCategoryView(){
         setContentView(R.layout.activity_select_level);
+        TextView textView = (TextView) findViewById(R.id.textView9);
+
+        textView.setText(getGenderString(cyclist.getGender()) + " / " +
+                         cyclist.getWeightString() + "" +
+                         getUnitAbbrev(cyclist.getWeightUnit()));
     }
 
     public void doSubmitCategory(View v){
@@ -185,7 +190,11 @@ public class MainActivity extends Activity {
         cyclist.setCategory(b.getText().toString());
         setContentView(R.layout.activity_show_effort);
         TextView mTextView = (TextView) findViewById(R.id.textView2);
-        mTextView.setText(cyclist.getCategory() + " Watts");
+
+        mTextView.setText(getGenderString(cyclist.getGender()) + "/" +
+                          cyclist.getWeightString() + "" +
+                          getUnitAbbrev(cyclist.getWeightUnit()) + "/" +
+                          cyclist.getCategory());
     }
 
     // bind the wattage range to a list view
@@ -197,7 +206,12 @@ public class MainActivity extends Activity {
 
         setContentView(R.layout.activity_show_watts);
         TextView mTextView = (TextView) findViewById(R.id.textView3);
-        mTextView.setText(cyclist.getCategory() + " " + getEffortString(cyclist.getEffort()) + " Watts");
+
+        mTextView.setText(getGenderString(cyclist.getGender()) + "/" +
+                cyclist.getWeightString() + "" +
+                getUnitAbbrev(cyclist.getWeightUnit()) + "/" +
+                cyclist.getCategory() + "/" +
+                getEffortString(cyclist.getEffort()));
 
         ArrayList<ArrayList> totalWattData = getSelectedCyclingCategoryWatts(cyclist.getCategory());
 
@@ -401,5 +415,13 @@ public class MainActivity extends Activity {
     public void setAboutContent(){
         TextView textView = (TextView) findViewById(R.id.address1);
         textView.setText(this.aboutText);
+    }
+
+    private String getGenderString(int gender){
+        return (gender == 0) ? "male" : "female";
+    }
+
+    private String getUnitAbbrev(String unit){
+        return (unit == "kilograms") ? "kg" : "lb";
     }
 }
