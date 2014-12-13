@@ -13,12 +13,14 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.NumberPicker;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
+import com.mcorbridge.truecycle.adapters.CustomAdapter;
 import com.mcorbridge.truecycle.data.men.MensWattData;
 import com.mcorbridge.truecycle.data.vo.Cyclist;
 import com.mcorbridge.truecycle.data.women.WomensWattData;
@@ -220,6 +222,9 @@ public class MainActivity extends Activity {
         ArrayAdapter<String> itemsAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, modifiedList);
         ListView listView = (ListView) findViewById(R.id.listView);
         listView.setAdapter(itemsAdapter);
+
+        final CustomAdapter adapter = new CustomAdapter(this, modifiedList);
+        listView.setAdapter(adapter);
     }
 
     //return the selected category
