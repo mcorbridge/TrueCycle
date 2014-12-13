@@ -99,7 +99,7 @@ public class MainActivity extends Activity {
         }
     }
 
-    // TODO add comment
+    // the first screen after the splash
     public void doViewInputWeight(View v){
         // create new vo for the cyclist
         cyclist = new Cyclist();
@@ -115,7 +115,7 @@ public class MainActivity extends Activity {
         //setNumberPickerValues();
     }
 
-    // TODO add comment
+    // text input listener to ensure correct numeric input
     private void setAddTextListener(){
         EditText mEdit = (EditText)findViewById(R.id.editText);
         mEdit.addTextChangedListener(new TextWatcher() {
@@ -142,7 +142,7 @@ public class MainActivity extends Activity {
         });
     }
 
-    // TODO add comment
+    // the numberpicker might be used in a future build
     private void setNumberPickerValues(){
         np1 = (NumberPicker) findViewById(R.id.numberPicker1);
         np1.setMaxValue(3);
@@ -165,7 +165,7 @@ public class MainActivity extends Activity {
         Log.d("number picker: ", String.valueOf(v1) + " " + String.valueOf(v2) + " " + String.valueOf(v3));
     }
 
-    // TODO add comment
+    // the second screen after the user selects gender and inputs weight
     public void doSubmit(View v){
         RadioGroup radioGroup = (RadioGroup) findViewById(R.id.radioGender);
         int radioButtonID = radioGroup.getCheckedRadioButtonId();
@@ -192,13 +192,13 @@ public class MainActivity extends Activity {
         showSelectCategoryView();
     }
 
-    // TODO add comment
+    // the third view after user selects a category
     public void showSelectCategoryView(){
         setContentView(R.layout.activity_select_level);
         setBreadCrumb(0);
     }
 
-    // TODO add comment
+    //the fourth view after user selects an effort
     public void doSubmitCategory(View v){
         RadioGroup g = (RadioGroup) findViewById(R.id.radioGroupCategory);
         int selected = g.getCheckedRadioButtonId();
@@ -380,7 +380,7 @@ public class MainActivity extends Activity {
         return "";
     }
 
-    // TODO add comment
+    // upon Back button the user selections are re-populated
     private void setWeightView(){
         RadioButton rb;
 
@@ -430,7 +430,7 @@ public class MainActivity extends Activity {
         textView.setText(this.aboutText);
     }
 
-    //TODO add contact and 'about me' text to layout
+    //add contact and 'about me' text to layout
     public void setContactContent(){
         TextView textView = (TextView) findViewById(R.id.contactText);
         textView.setText(this.contactText);
@@ -444,7 +444,7 @@ public class MainActivity extends Activity {
         return (unit.equals("kilograms")) ? "kg" : "lb";
     }
 
-    // TODO move all breadcrumb code to this one method
+    // breadcrumb code
     private void setBreadCrumb(int view){
         TextView textView;
         switch(view)
