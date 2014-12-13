@@ -13,7 +13,6 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.NumberPicker;
 import android.widget.RadioButton;
@@ -43,8 +42,17 @@ public class MainActivity extends Activity {
             "Note that a cyclist may not measure consistently within the separate categories. This means that although a cyclist can generate listed wattage within one category " +
             "(for example, 5 sec max), they may average higher/lower in others.\n\n" +
             "Using the app is relatively straightforward.  Enter (or select) the appropriate parameters to view a range of watts at a specific effort for the required athletic level." +
-            "Navigate between the screens to adjust the values to review wattage ranges for different cyclist weight, category and effort\n\n" +
-            "feedback: mikecorbridge@gmail.com";
+            "Navigate between the screens to adjust the values to review wattage ranges for different cyclist weight, category and effort";
+
+    String contactText = "As a recreational cyclist who rides on Cape Cod, Massachusetts, I can't justify the cost of putting a power meter on my road bike.  " +
+            "I'm not that interested watts since my main concern is whether I can keep up with the strong group.  A power" +
+            "meter is not going to improve on that metric.\n\nThis winter, in an attempt to maintain some semblance of summer ride shape, I started spin classes. " +
+            "The spin bikes are fitted with consoles that showed watts, and suddenly I was interested in my power output." +
+            " During spin class, I could see my watts increase as I turned up the resistance and pressed on the pedals.  But what did it mean?" +
+            " If I could maintain a 300 watt average over 5 minutes, did that make me Tour de France worthy?\n\nAfter finding Dr. Andy Coggan's data, the answer is a definitive no." +
+            " However I was able to see where I stood relative to established cycling categories.  This app doesn't do anything that Dr. Coggan's spreadsheet can't do, it just makes it easier." +
+            " I hope you will find this a useful tool to see where you currently stand, and perhaps it will motivate you to get to where you want to be.\n\nFeedback?" +
+            "  I can be reached at: mikecorbridge@gmail.com";
 
     NumberPicker np1;
     NumberPicker np2;
@@ -82,11 +90,16 @@ public class MainActivity extends Activity {
                 setContentView(R.layout.activity_about);
                 setAboutContent();
                 return true;
+            case R.id.action_contact:
+                setContentView(R.layout.activity_contact);
+                setContactContent();
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
     }
 
+    // TODO add comment
     public void doViewInputWeight(View v){
         // create new vo for the cyclist
         cyclist = new Cyclist();
@@ -102,6 +115,7 @@ public class MainActivity extends Activity {
         //setNumberPickerValues();
     }
 
+    // TODO add comment
     private void setAddTextListener(){
         EditText mEdit = (EditText)findViewById(R.id.editText);
         mEdit.addTextChangedListener(new TextWatcher() {
@@ -128,6 +142,7 @@ public class MainActivity extends Activity {
         });
     }
 
+    // TODO add comment
     private void setNumberPickerValues(){
         np1 = (NumberPicker) findViewById(R.id.numberPicker1);
         np1.setMaxValue(3);
@@ -150,6 +165,7 @@ public class MainActivity extends Activity {
         Log.d("number picker: ", String.valueOf(v1) + " " + String.valueOf(v2) + " " + String.valueOf(v3));
     }
 
+    // TODO add comment
     public void doSubmit(View v){
         RadioGroup radioGroup = (RadioGroup) findViewById(R.id.radioGender);
         int radioButtonID = radioGroup.getCheckedRadioButtonId();
@@ -176,27 +192,20 @@ public class MainActivity extends Activity {
         showSelectCategoryView();
     }
 
+    // TODO add comment
     public void showSelectCategoryView(){
         setContentView(R.layout.activity_select_level);
-        TextView textView = (TextView) findViewById(R.id.textView9);
-
-        textView.setText(getGenderString(cyclist.getGender()) + " / " +
-                         cyclist.getWeightString() + "" +
-                         getUnitAbbrev(cyclist.getWeightUnit()));
+        setBreadCrumb(0);
     }
 
+    // TODO add comment
     public void doSubmitCategory(View v){
         RadioGroup g = (RadioGroup) findViewById(R.id.radioGroupCategory);
         int selected = g.getCheckedRadioButtonId();
         RadioButton b = (RadioButton) findViewById(selected);
         cyclist.setCategory(b.getText().toString());
         setContentView(R.layout.activity_show_effort);
-        TextView mTextView = (TextView) findViewById(R.id.textView2);
-
-        mTextView.setText(getGenderString(cyclist.getGender()) + "/" +
-                          cyclist.getWeightString() + "" +
-                          getUnitAbbrev(cyclist.getWeightUnit()) + "/" +
-                          cyclist.getCategory());
+        setBreadCrumb(1);
     }
 
     // bind the wattage range to a list view
@@ -207,13 +216,8 @@ public class MainActivity extends Activity {
         cyclist.setEffort(ndx);
 
         setContentView(R.layout.activity_show_watts);
-        TextView mTextView = (TextView) findViewById(R.id.textView3);
 
-        mTextView.setText(getGenderString(cyclist.getGender()) + "/" +
-                cyclist.getWeightString() + "" +
-                getUnitAbbrev(cyclist.getWeightUnit()) + "/" +
-                cyclist.getCategory() + "/" +
-                getEffortString(cyclist.getEffort()));
+        setBreadCrumb(2);
 
         ArrayList<ArrayList> totalWattData = getSelectedCyclingCategoryWatts(cyclist.getCategory());
 
@@ -309,6 +313,8 @@ public class MainActivity extends Activity {
         RadioGroup g = (RadioGroup)findViewById(R.id.radioGroupEffort);
         RadioButton rb = (RadioButton)g.getChildAt(cyclist.getEffort());
         rb.setChecked(true);
+        //set breadcrumb
+        setBreadCrumb(1);
     }
 
     // upon Back button, ensure the previously selected category is shown as selected
@@ -351,6 +357,8 @@ public class MainActivity extends Activity {
         }
         RadioButton rb = (RadioButton)g.getChildAt(ndx);
         rb.setChecked(true);
+        //set breadcrumb
+        setBreadCrumb(0);
     }
 
     // set header text in activity_show_effort
@@ -372,10 +380,11 @@ public class MainActivity extends Activity {
         return "";
     }
 
+    // TODO add comment
     private void setWeightView(){
         RadioButton rb;
 
-        if(cyclist.getWeightUnit() == KILOGRAMS){
+        if(cyclist.getWeightUnit().equals(KILOGRAMS)){
             rb = (RadioButton)findViewById(R.id.radioKilogram);
             rb.setChecked(true);
         }else{
@@ -411,6 +420,7 @@ public class MainActivity extends Activity {
 
     }
 
+    //used in activity_layout_test
     public void doFoo(View v){
         Log.d("do", " foo");
     }
@@ -420,11 +430,50 @@ public class MainActivity extends Activity {
         textView.setText(this.aboutText);
     }
 
+    //TODO add contact and 'about me' text to layout
+    public void setContactContent(){
+        TextView textView = (TextView) findViewById(R.id.contactText);
+        textView.setText(this.contactText);
+    }
+
     private String getGenderString(int gender){
         return (gender == 0) ? "male" : "female";
     }
 
     private String getUnitAbbrev(String unit){
-        return (unit == "kilograms") ? "kg" : "lb";
+        return (unit.equals("kilograms")) ? "kg" : "lb";
+    }
+
+    // TODO move all breadcrumb code to this one method
+    private void setBreadCrumb(int view){
+        TextView textView;
+        switch(view)
+        {
+            case 0:
+                textView = (TextView) findViewById(R.id.textView9);
+                textView.setText(getGenderString(cyclist.getGender()) + " / " +
+                cyclist.getWeightString() + "" +
+                getUnitAbbrev(cyclist.getWeightUnit()));
+            break;
+
+            case 1:
+                textView = (TextView) findViewById(R.id.textView2);
+                textView.setText(getGenderString(cyclist.getGender()) + "/" +
+                cyclist.getWeightString() + "" +
+                getUnitAbbrev(cyclist.getWeightUnit()) + "/" +
+                cyclist.getCategory());
+            break;
+
+            case 2:
+                textView = (TextView) findViewById(R.id.textView3);
+                textView.setText(getGenderString(cyclist.getGender()) + "/" +
+                cyclist.getWeightString() + "" +
+                getUnitAbbrev(cyclist.getWeightUnit()) + "/" +
+                cyclist.getCategory() + "/" +
+                getEffortString(cyclist.getEffort()));
+            break;
+        }
+
+
     }
 }

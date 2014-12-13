@@ -79,6 +79,7 @@ public class DomesticProWattData {
         fiveMinAvgRange.add(3,6.57*cyclistWeightKg);
         fiveMinAvgRange.add(4,6.46*cyclistWeightKg);
         fiveMinAvgRange.add(5,6.36*cyclistWeightKg);
+        fiveMinAvgRange.add(6,6.26*cyclistWeightKg);
         fiveMinAvgRange.add(7,6.15*cyclistWeightKg);
 
         return fiveMinAvgRange;
