@@ -64,7 +64,6 @@ public class MainActivity extends Activity {
         mensWattData = new MensWattData();
         womensWattData = new WomensWattData();
         setContentView(R.layout.activity_main);
-        //setContentView(R.layout.activity_layout_test);
     }
 
 
@@ -182,10 +181,10 @@ public class MainActivity extends Activity {
         RadioButton rb = (RadioButton)findViewById(R.id.radioKilogram);
 
         if(rb.isChecked()){
-            cyclist.setWeightUnit(this.KILOGRAMS);
+            cyclist.setWeightUnit(KILOGRAMS);
             cyclist.setWeight(dblWeight);
         }else{
-            cyclist.setWeightUnit(this.POUNDS);
+            cyclist.setWeightUnit(POUNDS);
             cyclist.setWeight(dblWeight * 0.453592);
         }
         cyclist.setWeightString(mEdit.getText().toString());
@@ -441,7 +440,7 @@ public class MainActivity extends Activity {
     }
 
     private String getUnitAbbrev(String unit){
-        return (unit.equals("kilograms")) ? "kg" : "lb";
+        return (unit.equals(KILOGRAMS)) ? "kg" : "lb";
     }
 
     // breadcrumb code
@@ -473,7 +472,5 @@ public class MainActivity extends Activity {
                 getEffortString(cyclist.getEffort()));
             break;
         }
-
-
     }
-}
+} //end class
