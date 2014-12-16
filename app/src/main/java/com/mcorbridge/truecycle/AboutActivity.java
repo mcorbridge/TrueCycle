@@ -5,21 +5,25 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-
-import com.mcorbridge.truecycle.data.vo.Cyclist;
+import android.widget.TextView;
 
 
-public class MainActivity extends Activity {
+public class AboutActivity extends Activity {
 
-
-
-
+    String aboutText = "This app is based on data collected by Dr. Andy Coggan, a cycling coach at TrainingPeaks (trainingpeaks.com), and an author of 'Training and Racing with a Power Meter'." +
+            "This is the most widely accepted and referenced benchmark for power output based on rider category.\n\n " +
+            "Note that a cyclist may not measure consistently within the separate categories. This means that although a cyclist can generate listed wattage within one category " +
+            "(for example, 5 sec max), they may average higher/lower in others.\n\n" +
+            "Using the app is relatively straightforward.  Enter (or select) the appropriate parameters to view a range of watts at a specific effort for the required athletic level." +
+            "Navigate between the screens to adjust the values to review wattage ranges for different cyclist weight, category and effort";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_about);
+
+        TextView textView = (TextView) findViewById(R.id.address1);
+        textView.setText(this.aboutText);
     }
 
 
@@ -54,16 +58,4 @@ public class MainActivity extends Activity {
                 return super.onOptionsItemSelected(item);
         }
     }
-
-    // the first screen after the splash
-    public void doViewInputWeight(View v){
-        Intent intent = new Intent(this, GenderWeightActivity.class);
-        Cyclist cyclist = new Cyclist();
-        intent.putExtra("CyclistVO",cyclist);
-        startActivity(intent);
-    }
-
-
-
-
-} //end class
+}

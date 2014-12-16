@@ -21,7 +21,7 @@
         <activity
             android:name=".GenderWeightActivity"
             android:label="@string/title_activity_gender_weight"
-            android:windowSoftInputMode="stateVisible">
+            android:windowSoftInputMode="stateVisible" >
         </activity>
         <activity
             android:name=".CategoryActivity"
@@ -34,6 +34,14 @@
         <activity
             android:name=".WattOutputActivity"
             android:label="@string/title_activity_watt_output" >
+        </activity>
+        <activity
+            android:name=".AboutActivity"
+            android:label="@string/title_activity_about" >
+        </activity>
+        <activity
+            android:name=".ContactActivity"
+            android:label="@string/title_activity_contact" >
         </activity>
     </application>
 

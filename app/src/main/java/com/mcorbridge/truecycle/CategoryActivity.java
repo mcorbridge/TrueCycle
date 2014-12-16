@@ -3,14 +3,15 @@ package com.mcorbridge.truecycle;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 
 import com.mcorbridge.truecycle.data.vo.Cyclist;
+import com.mcorbridge.truecycle.util.BreadCrumb;
 
 import java.io.Serializable;
 
@@ -28,17 +29,14 @@ public class CategoryActivity extends Activity {
         Serializable serializable = savedInstanceState.getSerializable("CyclistVO");
         cyclist = (Cyclist)serializable;
 
-        Log.d("CyclistVO getGender -------------->", Integer.toString(cyclist.getGender()));
-        Log.d("CyclistVO getWeightUnit -------------->", cyclist.getWeightUnit());
-        Log.d("CyclistVO getWeightString -------------->", cyclist.getWeightString());
-        Log.d("CyclistVO getWeight -------------->", String.valueOf(cyclist.getWeight()));
+        setBreadCrumb();
     }
 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_category, menu);
+        getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
 
@@ -48,13 +46,23 @@ public class CategoryActivity extends Activity {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        Intent intent;
+        switch (item.getItemId()) {
+            case R.id.action_home:
+                intent = new Intent(this, MainActivity.class);
+                startActivity(intent);
+                return true;
+            case R.id.action_about:
+                intent = new Intent(this, AboutActivity.class);
+                startActivity(intent);
+                return true;
+            case R.id.action_contact:
+                intent = new Intent(this, ContactActivity.class);
+                startActivity(intent);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
-
-        return super.onOptionsItemSelected(item);
     }
 
     public void submitCategory(View v){
@@ -66,5 +74,13 @@ public class CategoryActivity extends Activity {
         Intent intent = new Intent(this, EffortActivity.class);
         intent.putExtra("CyclistVO",cyclist);
         startActivity(intent);
+    }
+
+    private void setBreadCrumb(){
+        TextView textView = (TextView) findViewById(R.id.breadcrumb);
+        String breadcrumb = BreadCrumb.getGenderString(cyclist.getGender()) + "/" +
+                            cyclist.getWeightString() + "" +
+                            BreadCrumb.getUnitAbbrev(cyclist.getWeightUnit());
+        textView.setText(breadcrumb);
     }
 }

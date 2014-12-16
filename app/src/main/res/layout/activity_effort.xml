@@ -10,13 +10,11 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="watts"
-        android:id="@+id/textView2"
-        android:layout_gravity="center_horizontal"
-        android:layout_alignParentTop="true"
-        android:layout_alignStart="@+id/radioGroupEffort"
-        android:layout_marginTop="65dp" />
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="breadcrumb"
+        android:id="@+id/breadcrumb"
+        android:layout_marginTop="30dp"
+        android:layout_centerHorizontal="true"/>
 
     <RadioGroup
         android:id="@+id/radioGroupEffort"
