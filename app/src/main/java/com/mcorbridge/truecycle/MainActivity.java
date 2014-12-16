@@ -1,15 +1,12 @@
 package com.mcorbridge.truecycle;
 
 import android.app.Activity;
-import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -101,21 +98,33 @@ public class MainActivity extends Activity {
     // the first screen after the splash
     public void doViewInputWeight(View v){
         // create new vo for the cyclist
-        cyclist = new Cyclist();
+        //cyclist = new Cyclist();
 
-        setContentView(R.layout.activity_input_weight);
+       // setContentView(R.layout.activity_input_weight);
 
-        EditText mEdit = (EditText)findViewById(R.id.editText);
-        mEdit.requestFocus();
-        InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
-        imm.showSoftInput(mEdit, InputMethodManager.SHOW_FORCED);
+        //EditText mEdit = (EditText)findViewById(R.id.editText);
+        //mEdit.requestFocus();
+        //InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+        //imm.showSoftInput(mEdit, InputMethodManager.SHOW_FORCED);
 
-        setAddTextListener();
+       // setAddTextListener();
         //setNumberPickerValues();
+
+        loadGenderWeightActivity();
     }
 
+    // *****************************************************************************
+    public void loadGenderWeightActivity(){
+        Intent intent = new Intent(this, GenderWeightActivity.class);
+        Cyclist cyclist = new Cyclist();
+        intent.putExtra("CyclistVO",cyclist);
+        startActivity(intent);
+    }
+
+    // *****************************************************************************
+
     // text input listener to ensure correct numeric input
-    private void setAddTextListener(){
+   /* private void setAddTextListener(){
         EditText mEdit = (EditText)findViewById(R.id.editText);
         mEdit.addTextChangedListener(new TextWatcher() {
             @Override
@@ -139,7 +148,7 @@ public class MainActivity extends Activity {
                 }
             }
         });
-    }
+    }*/
 
     // the numberpicker might be used in a future build
     private void setNumberPickerValues(){
@@ -405,7 +414,7 @@ public class MainActivity extends Activity {
 
         Button button = (Button)findViewById(R.id.button);
         button.setEnabled(true);
-        setAddTextListener();
+        //setAddTextListener();
     }
 
     // little ditty to look inside the cyclist vo

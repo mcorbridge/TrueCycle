@@ -1,10 +1,12 @@
 package com.mcorbridge.truecycle.data.vo;
 
+import java.io.Serializable;
+
 /**
  * Created by Mike on 12/8/2014.
  * copyright Michael D. Corbridge
  */
-public class Cyclist {
+public class Cyclist implements Serializable {
     // 0 = male, 1 = female
     public int getGender() {
         return gender;
