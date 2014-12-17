@@ -1,0 +1,67 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="com.mcorbridge.truecycle.EffortActivity">
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="breadcrumb"
+        android:id="@+id/breadcrumb"
+        android:layout_marginTop="30dp"
+        android:layout_centerHorizontal="true"/>
+
+    <RadioGroup
+        android:id="@+id/radioGroupEffort"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="126dp"
+        android:layout_centerHorizontal="true">
+
+        <RadioButton
+            android:id="@+id/radio5secMax"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/radio_5secMax"
+            android:checked="true"/>
+
+        <RadioButton
+            android:id="@+id/radio1minAvg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/radio_1minAvg" />
+
+        <RadioButton
+            android:id="@+id/radio5minAvg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/radio_5minAvg"/>
+
+        <RadioButton
+            android:id="@+id/radioFT"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/radio_ft" />
+
+    </RadioGroup>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="submit"
+        android:id="@+id/button3"
+        android:onClick="submitEffort"
+        android:layout_gravity="center_horizontal"
+        android:layout_below="@+id/radioGroupEffort"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="94dp" />
+
+
+
+</RelativeLayout>

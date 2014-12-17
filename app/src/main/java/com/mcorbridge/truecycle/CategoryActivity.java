@@ -6,20 +6,30 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.TextView;
 
 import com.mcorbridge.truecycle.data.vo.Cyclist;
+import com.mcorbridge.truecycle.util.BreadCrumb;
+
+import java.io.Serializable;
 
 
-public class MainActivity extends Activity {
+public class CategoryActivity extends Activity {
 
-
-
-
+    private Cyclist cyclist;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_category);
+
+        savedInstanceState = getIntent().getExtras();
+        Serializable serializable = savedInstanceState.getSerializable("CyclistVO");
+        cyclist = (Cyclist)serializable;
+
+        setBreadCrumb();
     }
 
 
@@ -55,15 +65,22 @@ public class MainActivity extends Activity {
         }
     }
 
-    // the first screen after the splash
-    public void doViewInputWeight(View v){
-        Intent intent = new Intent(this, GenderWeightActivity.class);
-        Cyclist cyclist = new Cyclist();
+    public void submitCategory(View v){
+        RadioGroup g = (RadioGroup) findViewById(R.id.radioGroupCategory);
+        int selected = g.getCheckedRadioButtonId();
+        RadioButton b = (RadioButton) findViewById(selected);
+        cyclist.setCategory(b.getText().toString());
+
+        Intent intent = new Intent(this, EffortActivity.class);
         intent.putExtra("CyclistVO",cyclist);
         startActivity(intent);
     }
 
-
-
-
-} //end class
+    private void setBreadCrumb(){
+        TextView textView = (TextView) findViewById(R.id.breadcrumb);
+        String breadcrumb = BreadCrumb.getGenderString(cyclist.getGender()) + "/" +
+                            cyclist.getWeightString() + "" +
+                            BreadCrumb.getUnitAbbrev(cyclist.getWeightUnit());
+        textView.setText(breadcrumb);
+    }
+}

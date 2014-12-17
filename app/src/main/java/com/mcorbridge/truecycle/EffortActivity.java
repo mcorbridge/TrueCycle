@@ -6,20 +6,29 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.RadioGroup;
+import android.widget.TextView;
 
 import com.mcorbridge.truecycle.data.vo.Cyclist;
+import com.mcorbridge.truecycle.util.BreadCrumb;
+
+import java.io.Serializable;
 
 
-public class MainActivity extends Activity {
+public class EffortActivity extends Activity {
 
-
-
-
+    private Cyclist cyclist;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_effort);
+
+        savedInstanceState = getIntent().getExtras();
+        Serializable serializable = savedInstanceState.getSerializable("CyclistVO");
+        cyclist = (Cyclist)serializable;
+
+        setBreadCrumb();
     }
 
 
@@ -55,15 +64,23 @@ public class MainActivity extends Activity {
         }
     }
 
-    // the first screen after the splash
-    public void doViewInputWeight(View v){
-        Intent intent = new Intent(this, GenderWeightActivity.class);
-        Cyclist cyclist = new Cyclist();
+    public void submitEffort(View v){
+        //get effort
+        RadioGroup g = (RadioGroup) findViewById(R.id.radioGroupEffort);
+        int ndx = g.indexOfChild(findViewById(g.getCheckedRadioButtonId()));
+        cyclist.setEffort(ndx);
+
+        Intent intent = new Intent(this, WattOutputActivity.class);
         intent.putExtra("CyclistVO",cyclist);
         startActivity(intent);
     }
 
-
-
-
-} //end class
+    private void setBreadCrumb(){
+        TextView textView = (TextView) findViewById(R.id.breadcrumb);
+        String breadcrumb = BreadCrumb.getGenderString(cyclist.getGender()) + "/" +
+                cyclist.getWeightString() + "" +
+                BreadCrumb.getUnitAbbrev(cyclist.getWeightUnit()) + "/" +
+                cyclist.getCategory();
+        textView.setText(breadcrumb);
+    }
+}
