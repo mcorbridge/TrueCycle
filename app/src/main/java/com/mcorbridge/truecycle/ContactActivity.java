@@ -3,6 +3,7 @@ package com.mcorbridge.truecycle;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
@@ -27,6 +28,7 @@ public class ContactActivity extends Activity {
 
         TextView textView = (TextView) findViewById(R.id.contactText);
         textView.setText(this.contactText);
+        textView.setMovementMethod(new ScrollingMovementMethod());
     }
 
 
